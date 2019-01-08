@@ -2,6 +2,7 @@
 #define SNAKE_H
 
 #include "Vector2D.h"
+#include "Food.h"
 
 #include <SDL.h>
 
@@ -18,6 +19,9 @@ class Snake
         void render(SDL_Renderer *renderer);
         void update();
         void handleEvents();
+        bool hasCollisions();
+        void hasEaten(Food *food);
+        void reset();
 
 
 

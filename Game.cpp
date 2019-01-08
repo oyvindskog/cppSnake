@@ -5,17 +5,18 @@
 Game::Game()
 {
     snake = new Snake();
-    for (int i=0; i<10; ++i){
-        const Vector2D part = Vector2D(i,2);
-        snake->addBodyPart(part);
-        std::cout << "adding bodypart at " << part << std::endl;
-    }
+    snake->reset();
+    food = new Food();
+    std::cout << "adding food at " << food->getPos() << std::endl;
 }
 
 Game::~Game()
 {
+
     std::cout << "destroying snake" << std::endl;
     delete snake;
+    std::cout << "destroying food" << std::endl;
+    delete food;
 }
 
 
@@ -60,17 +61,18 @@ void Game::handleEvents(){
     }
 
     snake->handleEvents();
+    if (snake->hasCollisions()) snake->reset();
+    snake->hasEaten(food);
 }
 
 void Game::render(){
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255 );
     SDL_RenderFillRect(renderer, &backDestRect );
-    //SDL_RenderCopy(renderer, backgroundTexture, &backSrcRect, &backDestRect);
-    snake->render(renderer);
-    std::cout << "whut" << std::endl;
-    SDL_RenderPresent(renderer);
 
+    snake->render(renderer);
+    food->render(renderer);
+    SDL_RenderPresent(renderer);
 }
 
 void Game::update(){

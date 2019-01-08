@@ -1,8 +1,10 @@
 #include "Game.h"
 #include "Vector2D.h"
 #include "Snake.h"
+#include "Food.h"
 
 #include <iostream>
+#include <time.h>
 
 Game *game=nullptr;
 
@@ -10,16 +12,18 @@ int main(int argc, char** argv)
 {
 
 
-    const int FPS = 60;
+    const int FPS = 40;
     const int frameDelay = 1000 / FPS;
     Uint32 frameStart;
     int frameTime;
 
+    // initialize srand for random numbers
+    srand ( time(NULL) );
 
     int windowWidth = 800;
     int windowHeight = 640;
     std::cout << "lets go" << std::endl;
-    std::cout << "game_init()" << std::endl;
+    std::cout << "initializing game..." << std::endl;
 
 
     game = new Game();

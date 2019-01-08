@@ -1,5 +1,7 @@
 #include "Vector2D.h"
 
+Vector2D::Vector2D(){}
+
 Vector2D::Vector2D(int initX, int initY)
 :x(initX), y(initY)
 {
@@ -25,9 +27,18 @@ int Vector2D::getY(){
     return y;
 }
 
+void Vector2D::setValue(int newX, int newY) {
+    x = newX;
+    y = newY;
+}
+
 void Vector2D::operator+=(const Vector2D &v){
     x += v.x;
     y += v.y;
+}
+
+bool Vector2D::operator==(const Vector2D &v){
+    return x == v.x && y==v.y;
 }
 
 

@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "Snake.h"
+#include "Food.h"
 
 #include <SDL.h>
 
@@ -27,6 +28,7 @@ class Game
         SDL_Rect backSrcRect, backDestRect;
         SDL_Renderer* renderer = nullptr;
         Snake *snake = nullptr;
+        Food *food = nullptr;
 };
 
 #endif // GAME_H
